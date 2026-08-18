@@ -17,12 +17,12 @@
 -- hl.monitor({ output = "eDP-1", mode = "preferred", position = "auto-down" })  -- laptop screen below externals
 
 -- Enable clamshell mode: turn off laptop monitor when lid is closed
--- hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd("/home/graham/.utils_gui/hypr_lid.sh close"), { locked = true })
--- hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("/home/graham/.utils_gui/hypr_lid.sh open"),  { locked = true })
+-- hl.bind("switch:on:Lid Switch",  hl.dsp.exec_cmd("/home/graham/.utils-gui/hypr_lid.sh close"), { locked = true })
+-- hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("/home/graham/.utils-gui/hypr_lid.sh open"),  { locked = true })
 
 -- Monitor hotplug detection
--- hl.on("monitor.added",   function() hl.exec_cmd("/home/graham/.utils_gui/hypr_lid.sh check") end)
--- hl.on("monitor.removed", function() hl.exec_cmd("/home/graham/.utils_gui/hypr_lid.sh check") end)
+-- hl.on("monitor.added",   function() hl.exec_cmd("/home/graham/.utils-gui/hypr_lid.sh check") end)
+-- hl.on("monitor.removed", function() hl.exec_cmd("/home/graham/.utils-gui/hypr_lid.sh check") end)
 
 
 ---------------------
@@ -33,11 +33,11 @@ local terminal         = "kitty"
 local terminal_trusted = [[kitty -o clipboard_control="write-clipboard write-primary read-clipboard read-primary no-ask"]]
 local fileManager      = "dolphin"
 local menu             = "wofi --show drun"
-local dropterm         = os.getenv("HOME") .. "/.utils_gui/quake-term.sh"
-local dropperp         = os.getenv("HOME") .. "/.utils_gui/quake-perp.sh"
-local dropnote         = os.getenv("HOME") .. "/.utils_gui/quake-note.sh"
-local dropbook         = os.getenv("HOME") .. "/.utils_gui/quake-book.sh"
-local dropclip         = os.getenv("HOME") .. "/.utils_gui/quake-clip.sh"
+local dropterm         = os.getenv("HOME") .. "/.utils-gui/quake-term.sh"
+local dropperp         = os.getenv("HOME") .. "/.utils-gui/quake-perp.sh"
+local dropnote         = os.getenv("HOME") .. "/.utils-gui/quake-note.sh"
+local dropbook         = os.getenv("HOME") .. "/.utils-gui/quake-book.sh"
+local dropclip         = os.getenv("HOME") .. "/.utils-gui/quake-clip.sh"
 local browser          = "firefox-bin"
 local screenshot       = [[sh -c 'file=/home/graham/Downloads/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png; slurp | grim -g - "$file" && wl-copy < "$file"']]
 
@@ -48,7 +48,7 @@ local screenshot       = [[sh -c 'file=/home/graham/Downloads/screenshots/$(date
 
 hl.on("hyprland.start", function()
     hl.exec_cmd(terminal)
-    hl.exec_cmd("/home/graham/.utils_gui/tmux-at-startup.sh")
+    hl.exec_cmd("/home/graham/.utils-gui/tmux-at-startup.sh")
     -- need a firefox instance open for quake-perp to work right
     -- hl.exec_cmd(browser, { workspace = "1", silent = true })
     hl.exec_cmd("hyprpaper")
@@ -381,7 +381,7 @@ hl.window_rule({
 ---- Dropdown ("quake") windows ----
 --
 -- Each dropdown now lives permanently on its own special workspace, and
--- ~/.utils_gui/quake-*.sh shows/hides it with hl.dsp.workspace.toggle_special().
+-- ~/.utils-gui/quake-*.sh shows/hides it with hl.dsp.workspace.toggle_special().
 --
 -- That replaces the old shuffle between the current workspace and
 -- special:<class>, which depended on the legacy `movetoworkspacesilent`
